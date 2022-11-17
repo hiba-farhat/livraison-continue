@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('----Git hub pull stage ---- ') {
+            steps {
+                script{
+                    checkout([$class: 'GitSCM' , branches: [[name: '*/Hiba']] ,
+                       userRemoteConfigs: [[
+                           credentialsId: 'git-credentials',
+                           url :'https://github.com/hiba-farhat/Projet-CD.git']]])
+                }
+            
+            }
+        }
+        stage('---- build ----') {
+            steps {
+                 script{
+                  sh "npm install"
+                  sh "ansible-playbook ansible/build.yml -i ansible/inventory/hosts.yml -e ansible_become_password=root"
+                  
+                }
+              }
+          }
+         stage('---- Docker ---- ') {
+            steps {
+                script{
+                    sh "ansible-playbook ansible/docker.yml -i ansible/inventory/hosts.yml -e ansible_become_password=root"
+                }
+              }
+           }
+         stage('---- Docker Registry ---- ') {
+            steps {
+                script{
+                    sh "ansible-playbook ansible/docker-registry.yml -i ansible/inventory/hosts.yml -e ansible_become_password=root"
+                }
+              }
+           }
+    }
+}
