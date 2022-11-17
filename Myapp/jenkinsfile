@@ -13,28 +13,5 @@ pipeline {
             
             }
         }
-        stage('---- build ----') {
-            steps {
-                 script{
-                  sh "npm install"
-                  sh "ansible-playbook ansible/build.yml -i ansible/inventory/hosts.yml -e ansible_become_password=root"
-                  
-                }
-              }
-          }
-         stage('---- Docker ---- ') {
-            steps {
-                script{
-                    sh "ansible-playbook ansible/docker.yml -i ansible/inventory/hosts.yml -e ansible_become_password=root"
-                }
-              }
-           }
-         stage('---- Docker Registry ---- ') {
-            steps {
-                script{
-                    sh "ansible-playbook ansible/docker-registry.yml -i ansible/inventory/hosts.yml -e ansible_become_password=root"
-                }
-              }
-           }
-    }
+        
 }
