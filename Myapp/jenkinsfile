@@ -5,7 +5,7 @@ pipeline {
         stage('----Git hub pull stage ---- ') {
             steps {
                 script{
-                    checkout([$class: 'GitSCM' , branches: [[name: '*/Hiba']] ,
+                    checkout([$class: 'GitSCM' , branches: [[name: '*/master']] ,
                        userRemoteConfigs: [[
                            credentialsId: 'git-credentials',
                            url :'https://github.com/hiba-farhat/Projet-CD.git']]])
