@@ -38,14 +38,14 @@ pipeline {
       stage('---push image to dockerhub---') {
      steps {
         script{
-          sh "ansible-playbook Myapp/ansible/docker-registry.yml -i Myapp/ansible/inventory/host.yml "
+          sh "ansible-playbook Myapp/ansible/docker-registry.yml -i Myapp/ansible/inventory/host.yml -e ansible_become_password=root "
         }
      }
      }
            stage('---install promethus grafana--') {
      steps {
         script{
-          sh "ansible-playbook Myapp/ansible/test.yml -i Myapp/ansible/inventory/host.yml "
+          sh "ansible-playbook Myapp/ansible/test.yml -i Myapp/ansible/inventory/host.yml -e ansible_become_password=root"
         }
      }
      }
