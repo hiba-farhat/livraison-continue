@@ -1,5 +1,5 @@
 - name: connect to docker hub
-  command: docker login -u hibafh -p hiba.7712998H
+  command: docker login -u hibafh -p hiba.712998H
 - name: add tag to image
   command: 'docker tag angularappcd:latest hibafh/angularappcd:latest'
 - name: push image to dockerhub
