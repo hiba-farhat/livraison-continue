@@ -42,6 +42,14 @@ pipeline {
         }
      }
      }
+           stage('---install promethus grafana--') {
+     steps {
+        script{
+          sh "ansible-playbook Myapp/ansible/test.yml -i Myapp/ansible/inventory/host.yml "
+        }
+     }
+     }
+     
      
         
 }
