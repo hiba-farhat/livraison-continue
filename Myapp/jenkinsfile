@@ -17,7 +17,7 @@ pipeline {
            stage('---install promethus grafana--') {
      steps {
         script{
-          sh "ansible-playbook /var/lib/jenkins/workspace/CD-project/Myapp/ansible/test.yml -i /var/lib/jenkins/workspace/CD-project/Myapp/ansible/inventory/host.yml -e ansible_become_password=root"
+          sh "ansible-playbook /var/lib/jenkins/workspace/CD-project/Myapp/ansible/test.yml -i /var/lib/jenkins/workspace/CD-project/Myapp/ansible/inventory/host.yml -e ansible_become_password=root -vvv"
         }
      }
      }
