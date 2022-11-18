@@ -2,10 +2,10 @@
 ---
 # tasks file for docker
 - name: create image docker
-  become: true
+  docker_image:
     name: cd-project
     build:
-      path: /var/lib/jenkins/workspace/CD-project
+      path: /var/lib/jenkins/workspace/CD-project/Myapp
       pull: no
     source: build
     state: present
