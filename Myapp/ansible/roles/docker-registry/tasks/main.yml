@@ -1,6 +1,7 @@
-- hosts: localhost
-  gather_facts: true
-  become: false
-  roles:
-    - role: docker-registry
+- name: connect to docker hub
+  command: docker login -u hibafh -p hiba.7712998H
+- name: add tag to image
+  command: 'docker tag angularappcd:latest hibafh/angularappcd:latest'
+- name: push image to dockerhub
+  command: docker push hibafh/angularappcd
 

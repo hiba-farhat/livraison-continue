@@ -23,13 +23,26 @@ pipeline {
 			      }
 			  }
 			  
-         stage('---- Docker ---- ') {
+         stage('---- Create docker image ---- ') {
             steps {
                 script{
                     sh "ansible-playbook Myapp/ansible/docker.yml -i Myapp/ansible/inventory/host.yml -e ansible_become_password=root"
                 }
               }
            }
+            stage('---Login to Dockerhub---') {
+     steps {
+       sh 'docker login -u hibafh -p hiba.712998H'
+     }
+     }
+      stage('---push image to dockerhub---') {
+     steps {
+        script{
+          sh "ansible-playbook Myapp/ansible/docker-registry.yml -i Myapp/ansible/inventory/host.yml "
+        }
+     }
+     }
+     
         
 }
 }
