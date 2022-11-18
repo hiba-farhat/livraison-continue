@@ -2,18 +2,19 @@
 ---
 # tasks file for docker
 - name: create image docker
-  docker_image:
-    name: hibafh/cd-project:latest
+  become: true
+    name: cd-project
     build:
       path: /var/lib/jenkins/workspace/CD-project
       pull: no
     source: build
     state: present
     force_source: true
+    
 - name: run container docker 
   docker_container:
     name: myapp_container
-    image: hibafh/cd-project:latest
+    image: cd-project:latest
     state: started
     recreate: true
     ports:
